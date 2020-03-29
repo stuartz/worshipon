@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-worshipon-dev-150038-authRole",
+            "UnauthRoleArn": "arn:aws:iam::097172611689:role/amplify-worshipon-dev-150038-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::097172611689:role/amplify-worshipon-dev-150038-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-worshipon-dev-150038-deployment",
+            "UnauthRoleName": "amplify-worshipon-dev-150038-unauthRole",
+            "StackName": "amplify-worshipon-dev-150038",
+            "StackId": "arn:aws:cloudformation:us-east-2:097172611689:stack/amplify-worshipon-dev-150038/f706cbe0-71f7-11ea-acb6-0a18862e0c0c",
+            "AmplifyAppId": "dc1r7yiatux0k"
+        },
+        "categories": {
+            "auth": {
+                "worshipone5334687": {}
+            }
+        }
+    }
+}

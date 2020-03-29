@@ -1,0 +1,33 @@
+type Todo 
+  @model
+  @searchable
+{
+  id: ID!
+  name: String!
+  owner: String
+  date: AWSDate
+  description: String
+  completed: Boolean!
+}
+
+type Profile
+ @model
+ @searchable
+ @auth(rules: [{ allow: owner }])
+{
+  id: ID!
+  name: String
+  email: String!
+  artist: Boolean
+  likes: [Content]
+  uploads: [Content]
+}
+type Content
+  @model
+  @searchable
+{
+  id: ID!
+  type: String!
+  url: String
+  metadata: String
+}
