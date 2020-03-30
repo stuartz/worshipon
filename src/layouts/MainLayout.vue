@@ -37,6 +37,51 @@
           :key="link.title"
           v-bind="link"
         />
+
+        <q-item clickable :to="{name: 'todo'}">
+          <q-item-section avatar>
+            <q-icon name="note"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Todo App</q-item-label>
+            <q-item-label caption>create a todo list..</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <div v-if="isLoggedIn">
+          <q-item clickable :to="{name: 'profile'}">
+            <q-item-section avatar>
+              <q-icon name="settings"/>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Profile</q-item-label>
+              <q-item-label caption>view your profile</q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
+
+        <div v-if="isLoggedIn">
+          <q-item clickable @click="signOut">
+            <q-item-section avatar>
+              <q-icon name="stop"/>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Logout</q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
+
+        <div v-if="!isLoggedIn">
+          <q-item clickable :to="{name: 'auth'}">
+            <q-item-section avatar>
+              <q-icon name="group"/>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Login/SignUp</q-item-label>
+              <q-item-label caption>Login or Signup</q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
       </q-list>
     </q-drawer>
 
@@ -47,6 +92,7 @@
 </template>
 
 <script>
+import { openURL } from 'quasar'
 import EssentialLink from 'components/EssentialLink'
 
 export default {
@@ -58,7 +104,9 @@ export default {
 
   data () {
     return {
-      leftDrawerOpen: false,
+      user: '',
+      signedIn: 'false',
+      leftDrawerOpen: this.$q.platform.is.desktop,
       essentialLinks: [
         {
           title: 'Docs',
@@ -97,6 +145,37 @@ export default {
           link: 'https://facebook.quasar.dev'
         }
       ]
+    }
+  },
+  computed: {
+    isLoggedIn () {
+      return this.signedIn
+    }
+  },
+  mounted () {
+    this.$AmplifyEventBus.$on('authState', info => {
+      this.signedIn = true
+    })
+  },
+  beforeCreate () {
+    this.$Auth.currentAuthenticatedUser()
+      .then(user => {
+        this.user = user
+        this.signedIn = true
+      })
+      .catch(() => {
+        this.signedIn = false
+      })
+  },
+  methods: {
+    openURL,
+    async signOut () {
+      await this.$Auth.signOut()
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
+      this.signedIn = false
+      parent.signedIn = false
+      this.$router.push({ name: 'auth' })
     }
   }
 }

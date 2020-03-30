@@ -8,7 +8,9 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     boot: [
       'i18n',
-      'axios'
+      'axios',
+      'amplify',
+      'appsync'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -44,7 +46,28 @@ module.exports = function (ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: 'auto',
 
-      components: [],
+      components: [
+        'QLayout',
+        'QHeader',
+        'QDrawer',
+        'QPageContainer',
+        'QPage',
+        'QToolbar',
+        'QToolbarTitle',
+        'QBtn',
+        'QIcon',
+        'QList',
+        'QItem',
+        'QItemSection',
+        'QItemLabel',
+        'QInput',
+        'QDate',
+        'QTime',
+        'QPopupProxy',
+        'QCircularProgress',
+        'QParallax',
+        'QCard'
+      ],
       directives: [],
 
       // Quasar plugins
@@ -73,10 +96,15 @@ module.exports = function (ctx) {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /node_modules/,
+          exclude: /(node_modules|aws-exports.js)/,
           options: {
             formatter: require('eslint').CLIEngine.getFormatter('stylish')
           }
+        }),
+        cfg.module.rules.push({
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto'
         })
       }
     },
