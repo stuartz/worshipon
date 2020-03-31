@@ -21,6 +21,8 @@ type Profile
   artist: Boolean
   likes: [Content]
   uploads: [Content]
+  terms_cond: Boolean
+  dcma: Boolean
 }
 type Content
   @model

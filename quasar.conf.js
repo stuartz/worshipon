@@ -1,5 +1,6 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
+const { configure } = require('quasar/wrappers')
 
 module.exports = function (ctx) {
   return {
@@ -37,6 +38,7 @@ module.exports = function (ctx) {
       iconSet: 'material-icons', // Quasar icon set
       lang: 'en-us', // Quasar language pack
 
+
       // Possible values for "all":
       // * 'auto' - Auto-import needed Quasar components & directives
       //            (slightly higher compile time; next to minimum bundle size; most convenient)
@@ -71,7 +73,7 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Notify']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -113,7 +115,7 @@ module.exports = function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: true // opens browser window automatically      
     },
 
     // animations: 'all', // --- includes all animations

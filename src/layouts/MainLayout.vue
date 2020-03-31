@@ -91,6 +91,22 @@
   </q-layout>
 </template>
 
+<style>
+  html, body {
+    height: 100%;
+  }
+  .q-page-container {
+    background: url("~assets/beach-1851101.jpg");
+    background-size: cover;
+    flex: 1;
+  }
+  .q-layout, body{
+    display: flex;
+  }
+  .q-app {
+    flex:1;
+  }
+</style>
 <script>
 import { openURL } from 'quasar'
 import EssentialLink from 'components/EssentialLink'

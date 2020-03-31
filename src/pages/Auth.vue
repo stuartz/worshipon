@@ -1,27 +1,15 @@
-<template><div class="flex flex-center">
-    <q-parallax>
-      <template v-slot:media>
-        <img src="~assets/beach-1851101.jpg">
-      </template>
-
-      <template v-slot:content="scope">
-        <div
-          class="absolute column items-center"
-          :style="{
-            opacity: 0.55 + (1 - scope.percentScrolled) * 0.55,
-            top: (scope.percentScrolled * 10) + '%',
-            left: 0,
-            right: 0
-          }"
-        >
-          <div class="auth">
-            <amplify-authenticator v-bind:authConfig="authConfig"></amplify-authenticator>
-          </div>
-        </div>
-      </template>
-    </q-parallax>
+<template>
+  <div class="flex flex-center">
+    <div class="auth">
+      <amplify-authenticator v-bind:authConfig="authConfig"></amplify-authenticator>
+    </div>
   </div>
 </template>
+<style>
+  .auth  {
+    margin: 20px auto;
+}
+</style>
 <script>
 export default {
   name: 'home',
