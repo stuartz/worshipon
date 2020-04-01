@@ -1,6 +1,7 @@
 type Todo 
   @model
   @searchable
+  @auth(rules: [{ allow: owner }])
 {
   id: ID!
   name: String!
@@ -13,23 +14,25 @@ type Todo
 type Profile
  @model
  @searchable
- @auth(rules: [{ allow: owner }])
+ @auth(rules: [{ allow: owner },{allow: groups, groups: ["Admin","Editor"]}])
 {
   id: ID!
   name: String
   email: String!
   artist: Boolean
-  likes: [Content]
-  uploads: [Content]
-  terms_cond: Boolean
-  dcma: Boolean
+  likes: [Content] @connection
+  uploads: [Content] @connection
+  termsCond: Boolean @auth(rules:[{ allow: owner, operations:[create] }{allow: groups, groups: ["Admin","Editor"]}])
+  dcma: Boolean @auth(rules:[{ allow: owner, operations:[create] }{allow: groups, groups: ["Admin","Editor"]}])
 }
 type Content
   @model
   @searchable
+  @auth(rules:[{ allow: owner }{allow: groups, groups: ["Admin","Editor"]}])
 {
   id: ID!
-  type: String!
-  url: String
+  type: String @auth(rules:[{ allow: owner, operations:[create] }{allow: groups, groups: ["Admin","Editor"]}])
+  url: String  @auth(rules:[{ allow: owner, operations:[create] }{allow: groups, groups: ["Admin","Editor"]}])
   metadata: String
+  live: Boolean @auth(rules:[{ allow: owner, operations:[create] }{allow: groups, groups: ["Admin","Editor"]}])
 }

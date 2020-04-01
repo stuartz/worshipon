@@ -61,12 +61,12 @@
         </div>
 
         <div v-if="isLoggedIn">
-          <q-item clickable @click="signOut">
+          <q-item>
             <q-item-section avatar>
               <q-icon name="stop"/>
             </q-item-section>
             <q-item-section>
-              <q-item-label>Logout</q-item-label>
+              <amplify-sign-out></amplify-sign-out>
             </q-item-section>
           </q-item>
         </div>
@@ -122,6 +122,7 @@ export default {
     return {
       user: '',
       signedIn: 'false',
+      profile: '',
       leftDrawerOpen: this.$q.platform.is.desktop,
       essentialLinks: [
         {
