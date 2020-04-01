@@ -47,3 +47,18 @@ See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
   * experienced git team management
   * experienced project manager with open source pm app
   * a lawyer for music contract and app usage
+# TODO
+  * add pages for viewing privacy, terms_conditions, dcma
+  * add confirmation to profile for new signups for TC&Privacy 
+  * add confirmation check to MainLayout.vue similar to signin check
+  * add page for artists to upload content to S3
+    * must accept dcma -> add to profile
+    * fields: content-type(mp4,etc. pdf,etc.), title, type (music, lyrics, chords, sheet music, background) , genere, grade(prof, home studio, draft)
+  * add page for listening (Should listeners be able to listen w/out signin-no profile or likes, etc. to click on? Random song list only by language and grade)
+  * start simple with just a random song list according to language & grade preferences
+  * will add song lists according to prefrences genre, likes, favorites
+  * will add thumbs for like/dislike
+  * will add crosses for honors/dishonors Christ
+  * will add heart for favorit
+  * will add search functionality for artist, song, or album
+  * will add subscription for support
