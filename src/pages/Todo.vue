@@ -220,6 +220,11 @@ export default {
 * {
   box-sizing: border-box;
 }
+form div.q-pa-md  {
+  max-width: 420px;
+  background: whitesmoke;
+  border-radius: 9px;
+}
 .todoButton {
   width: 100%;
   padding: 10px;

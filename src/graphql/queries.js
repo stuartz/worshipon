@@ -40,17 +40,29 @@ export const getProfile = /* GraphQL */ `
       email
       artist
       likes {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
       uploads {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
+      termsCond
+      dcma
       owner
     }
   }
@@ -68,17 +80,13 @@ export const listProfiles = /* GraphQL */ `
         email
         artist
         likes {
-          id
-          type
-          url
-          metadata
+          nextToken
         }
         uploads {
-          id
-          type
-          url
-          metadata
+          nextToken
         }
+        termsCond
+        dcma
         owner
       }
       nextToken
@@ -92,6 +100,8 @@ export const getContent = /* GraphQL */ `
       type
       url
       metadata
+      live
+      owner
     }
   }
 `;
@@ -107,6 +117,8 @@ export const listContents = /* GraphQL */ `
         type
         url
         metadata
+        live
+        owner
       }
       nextToken
     }
@@ -157,17 +169,13 @@ export const searchProfiles = /* GraphQL */ `
         email
         artist
         likes {
-          id
-          type
-          url
-          metadata
+          nextToken
         }
         uploads {
-          id
-          type
-          url
-          metadata
+          nextToken
         }
+        termsCond
+        dcma
         owner
       }
       nextToken
@@ -193,6 +201,8 @@ export const searchContents = /* GraphQL */ `
         type
         url
         metadata
+        live
+        owner
       }
       nextToken
       total

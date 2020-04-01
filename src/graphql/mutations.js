@@ -57,17 +57,29 @@ export const createProfile = /* GraphQL */ `
       email
       artist
       likes {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
       uploads {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
+      termsCond
+      dcma
       owner
     }
   }
@@ -83,17 +95,29 @@ export const updateProfile = /* GraphQL */ `
       email
       artist
       likes {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
       uploads {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
+      termsCond
+      dcma
       owner
     }
   }
@@ -109,17 +133,29 @@ export const deleteProfile = /* GraphQL */ `
       email
       artist
       likes {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
       uploads {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
+      termsCond
+      dcma
       owner
     }
   }
@@ -134,6 +170,8 @@ export const createContent = /* GraphQL */ `
       type
       url
       metadata
+      live
+      owner
     }
   }
 `;
@@ -147,6 +185,8 @@ export const updateContent = /* GraphQL */ `
       type
       url
       metadata
+      live
+      owner
     }
   }
 `;
@@ -160,6 +200,8 @@ export const deleteContent = /* GraphQL */ `
       type
       url
       metadata
+      live
+      owner
     }
   }
 `;

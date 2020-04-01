@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
+  subscription OnCreateTodo($owner: String!) {
+    onCreateTodo(owner: $owner) {
       id
       name
       owner
@@ -14,8 +14,8 @@ export const onCreateTodo = /* GraphQL */ `
   }
 `;
 export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
+  subscription OnUpdateTodo($owner: String!) {
+    onUpdateTodo(owner: $owner) {
       id
       name
       owner
@@ -26,8 +26,8 @@ export const onUpdateTodo = /* GraphQL */ `
   }
 `;
 export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
+  subscription OnDeleteTodo($owner: String!) {
+    onDeleteTodo(owner: $owner) {
       id
       name
       owner
@@ -38,101 +38,143 @@ export const onDeleteTodo = /* GraphQL */ `
   }
 `;
 export const onCreateProfile = /* GraphQL */ `
-  subscription OnCreateProfile($owner: String!) {
+  subscription OnCreateProfile($owner: String) {
     onCreateProfile(owner: $owner) {
       id
       name
       email
       artist
       likes {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
       uploads {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
+      termsCond
+      dcma
       owner
     }
   }
 `;
 export const onUpdateProfile = /* GraphQL */ `
-  subscription OnUpdateProfile($owner: String!) {
+  subscription OnUpdateProfile($owner: String) {
     onUpdateProfile(owner: $owner) {
       id
       name
       email
       artist
       likes {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
       uploads {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
+      termsCond
+      dcma
       owner
     }
   }
 `;
 export const onDeleteProfile = /* GraphQL */ `
-  subscription OnDeleteProfile($owner: String!) {
+  subscription OnDeleteProfile($owner: String) {
     onDeleteProfile(owner: $owner) {
       id
       name
       email
       artist
       likes {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
       uploads {
-        id
-        type
-        url
-        metadata
+        items {
+          id
+          type
+          url
+          metadata
+          live
+          owner
+        }
+        nextToken
       }
+      termsCond
+      dcma
       owner
     }
   }
 `;
 export const onCreateContent = /* GraphQL */ `
-  subscription OnCreateContent {
-    onCreateContent {
+  subscription OnCreateContent($owner: String) {
+    onCreateContent(owner: $owner) {
       id
       type
       url
       metadata
+      live
+      owner
     }
   }
 `;
 export const onUpdateContent = /* GraphQL */ `
-  subscription OnUpdateContent {
-    onUpdateContent {
+  subscription OnUpdateContent($owner: String) {
+    onUpdateContent(owner: $owner) {
       id
       type
       url
       metadata
+      live
+      owner
     }
   }
 `;
 export const onDeleteContent = /* GraphQL */ `
-  subscription OnDeleteContent {
-    onDeleteContent {
+  subscription OnDeleteContent($owner: String) {
+    onDeleteContent(owner: $owner) {
       id
       type
       url
       metadata
+      live
+      owner
     }
   }
 `;
