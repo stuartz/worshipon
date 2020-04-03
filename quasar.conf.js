@@ -100,7 +100,10 @@ module.exports = function (ctx) {
           loader: 'eslint-loader',
           exclude: /(node_modules|aws-exports.js)/,
           options: {
-            formatter: require('eslint').CLIEngine.getFormatter('stylish')
+            formatter: require('eslint').CLIEngine.getFormatter('stylish'),
+            rules: {
+              'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }]
+            }
           }
         }),
         cfg.module.rules.push({
