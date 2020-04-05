@@ -118,7 +118,7 @@ module.exports = function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically      
+      open: true // opens browser window automatically
     },
 
     // animations: 'all', // --- includes all animations
@@ -135,8 +135,8 @@ module.exports = function (ctx) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'WorshipOn',
-        short_name: 'WorshipOn',
+        name: 'WorshipON',
+        short_name: 'WorshipON',
         description: 'A worship experience',
         display: 'standalone',
         orientation: 'portrait',

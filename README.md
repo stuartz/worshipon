@@ -1,5 +1,5 @@
-# WorshipOn (worshipon)
-WorshipOn will be a world-wide worship app providing an easy entry for artists to share content that glorifies Jesus Christ in their own languages, and the opportunity for any one to listen and worship Him.Meanwhile, worship leaders can download content to use in worship services.
+# WorshipON (worshipon)
+WorshipON will be a world-wide worship app providing an easy entry for artists to share content that glorifies Jesus Christ in their own languages, and the opportunity for any one to listen and worship Him.Meanwhile, worship leaders can download content to use in worship services.
 
 Eventually, we are looking to have a platform that also enables chats, pod casts, and videos.
 
@@ -39,7 +39,7 @@ See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
 # Looking for help in the following areas
   * graphic desin for favicon and background
   * Amplify graphql for backend models
-  * Amplify components for front end  
+  * Amplify components for front end 
   * Quasar and/or Vue for frontend
   * data scientist for creating song lists from language, genre, favorites, etc.
   * marketingcontract documentation for music rights
@@ -49,8 +49,8 @@ See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
   * a lawyer for music contract and app usage
 # TODO
   * add pages for viewing privacy, terms_conditions, dcma
-  * add confirmation to profile for new signups for TC&Privacy 
-  * add confirmation check to MainLayout.vue similar to signin check
+  * add confirmation to profile for new signups for TC&Privacy
+  * add confirmation check to BaseMainLayout.vue similar to signin check
   * add page for artists to upload content to S3
     * must accept dcma -> add to profile
     * fields: content-type(mp4,etc. pdf,etc.), title, type (music, lyrics, chords, sheet music, background) , genere, grade(prof, home studio, draft)

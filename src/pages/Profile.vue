@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <h1>Welcome, {{user.username}}</h1>
+  <div v-if="this.hasProfile">
+    <h1>Welcome, {{JSON.stringify(user)}}</h1>
+  </div>
+  <div v-else>
+    <h2 class="text-center" style="background-color: white;">Please accept the
+      <a href="/#/terms_conditions" alt="Link to Terms and Conditions">terms and conditions</a>
+       to use prefrences.</h2>
   </div>
 </template>
 <script>

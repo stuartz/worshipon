@@ -224,6 +224,7 @@ form div.q-pa-md  {
   max-width: 420px;
   background: whitesmoke;
   border-radius: 9px;
+  margin: auto;
 }
 .todoButton {
   width: 100%;

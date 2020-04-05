@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          WorshipOn!
+          WorshipON!
         </q-toolbar-title>
 
         <!--div>Quasar v{{ $q.version }}</div-->
@@ -37,40 +37,71 @@
           :key="link.title"
           v-bind="link"
         />
-
-        <q-item clickable :to="{name: 'todo'}">
-          <q-item-section avatar>
-            <q-icon name="note"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Todo App</q-item-label>
-            <q-item-label caption>create a todo list..</q-item-label>
-          </q-item-section>
-        </q-item>
-
+        <div v-if="isLoggedIn">
+          <q-item clickable :to="{name: 'todo'}">
+            <q-item-section avatar>
+              <q-icon name="note"/>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Todo App</q-item-label>
+              <q-item-label caption>create a todo list..</q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
         <div v-if="isLoggedIn">
           <q-item clickable :to="{name: 'profile'}">
             <q-item-section avatar>
               <q-icon name="settings"/>
             </q-item-section>
             <q-item-section>
-              <q-item-label>Profile</q-item-label>
-              <q-item-label caption>view your profile</q-item-label>
+              <q-item-label>Preferences</q-item-label>
+              <q-item-label caption>View and update your preferences</q-item-label>
             </q-item-section>
           </q-item>
         </div>
-
+        <div>
+          <q-item clickable :to="{name: 'privacy'}">
+            <q-item-section avatar>
+              <q-icon name="profile"/>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Privacy Policy</q-item-label>
+              <q-item-label caption>View privacy policy</q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
+        <div>
+          <q-item clickable :to="{name: 'terms_conditions'}">
+            <q-item-section avatar>
+              <q-icon name="profile"/>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Terms &amp; Conditions</q-item-label>
+              <q-item-label caption>View Terms &amp; Conditions</q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
+        <div>
+          <q-item clickable :to="{name: 'dcma'}">
+            <q-item-section avatar>
+              <q-icon name="profile"/>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>DCMA Policy</q-item-label>
+              <q-item-label caption>View content uploads policy</q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
         <div v-if="isLoggedIn">
-          <q-item>
+          <q-item clickable @click="signOut">
             <q-item-section avatar>
               <q-icon name="stop"/>
             </q-item-section>
             <q-item-section>
-              <amplify-sign-out></amplify-sign-out>
+              <q-item-label>Logout</q-item-label>
             </q-item-section>
           </q-item>
         </div>
-
         <div v-if="!isLoggedIn">
           <q-item clickable :to="{name: 'auth'}">
             <q-item-section avatar>
@@ -110,6 +141,9 @@
 <script>
 import { openURL } from 'quasar'
 import EssentialLink from 'components/EssentialLink'
+import gql from 'graphql-tag'
+import { getProfile } from '../graphql/queries'
+// import { createProfile, updateProfile } from '../graphql/mutations'
 
 export default {
   name: 'MainLayout',
@@ -122,7 +156,9 @@ export default {
     return {
       user: '',
       signedIn: 'false',
+      hasProfile: 'false',
       profile: '',
+      error: null,
       leftDrawerOpen: this.$q.platform.is.desktop,
       essentialLinks: [
         {
@@ -133,33 +169,15 @@ export default {
         },
         {
           title: 'Github',
-          caption: 'github.com/quasarframework',
+          caption: 'github.com/stuartz/worshipon',
           icon: 'code',
-          link: 'https://github.com/quasarframework'
+          link: 'https://github.com/stuartz/worshipon'
         },
         {
-          title: 'Discord Chat Channel',
-          caption: 'chat.quasar.dev',
-          icon: 'chat',
-          link: 'https://chat.quasar.dev'
-        },
-        {
-          title: 'Forum',
-          caption: 'forum.quasar.dev',
-          icon: 'record_voice_over',
-          link: 'https://forum.quasar.dev'
-        },
-        {
-          title: 'Twitter',
-          caption: '@quasarframework',
-          icon: 'rss_feed',
-          link: 'https://twitter.quasar.dev'
-        },
-        {
-          title: 'Facebook',
-          caption: '@QuasarFramework',
-          icon: 'public',
-          link: 'https://facebook.quasar.dev'
+          title: 'Vue.js',
+          caption: 'Vue.js',
+          icon: 'school',
+          link: 'https://vuejs.org/'
         }
       ]
     }
@@ -167,11 +185,15 @@ export default {
   computed: {
     isLoggedIn () {
       return this.signedIn
+    },
+    hasaProfile () {
+      return this.hasProfile
     }
   },
   mounted () {
     this.$AmplifyEventBus.$on('authState', info => {
       this.signedIn = true
+      this.checkProfile()
     })
   },
   beforeCreate () {
@@ -179,6 +201,7 @@ export default {
       .then(user => {
         this.user = user
         this.signedIn = true
+        this.checkProfile()
       })
       .catch(() => {
         this.signedIn = false
@@ -193,6 +216,23 @@ export default {
       this.signedIn = false
       parent.signedIn = false
       this.$router.push({ name: 'auth' })
+    },
+    checkProfile () {
+      if (this.profile && this.profile.termsConditions) {
+        this.hasProfile = true
+      }
+      if (this.signedIn && !this.hasProfile) {
+        alert('Create a profile for increased listening pleasure')
+      }
+    }
+  },
+  apollo: {
+    profile: {
+      query: gql(getProfile),
+      update: data => data.profile,
+      error (error) {
+        this.error = JSON.stringify(error.message)
+      }
     }
   }
 }

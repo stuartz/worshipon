@@ -2,7 +2,7 @@
   "name": "worshipon",
   "version": "0.0.1",
   "description": "A worship experience",
-  "productName": "WorshipOn",
+  "productName": "WorshipON",
   "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",
   "author": "Stuart Zurcher <stuartz.ccrx@gmail.com>",
